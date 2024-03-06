@@ -27,3 +27,30 @@ export const teachersHeader = [
   { text: "Starting Date", value: "date" },
   { text: "Actions", value: "actions", sortable: false }
 ];
+
+export const trainingsHeader = [
+  {
+    text: "Names",
+    align: "start",
+    sortable: true,
+    value: "name"
+  },
+  { text: "Prices", sortable: true, value: "price" },
+  {
+    text: "Teachers",
+    sortable: false,
+    value: "teachers",
+    width: "15%",
+    align: "center"
+  },
+  {
+    text: "Students",
+    sortable: false,
+    value: "students",
+    width: "15%",
+    align: "center"
+  },
+  { text: "Add Teachers", sortable: false, value: "addTeachers", width: "15%" },
+  { text: "Add Students", sortable: false, value: "addStudents", width: "15%" },
+  { text: "Actions", value: "actions", sortable: false }
+];

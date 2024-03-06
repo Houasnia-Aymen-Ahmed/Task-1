@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import { Home, StudentsList, TeachersList } from "@/views";
+import { Home, StudentsList, TeachersList, TrainingsList } from "@/views";
 
 Vue.use(VueRouter);
 
@@ -24,6 +24,11 @@ const routes = [
         path: "teachers",
         name: "teachers",
         component: TeachersList
+      },
+      {
+        path: "trainings",
+        name: "trainings",
+        component: TrainingsList
       }
     ]
   }

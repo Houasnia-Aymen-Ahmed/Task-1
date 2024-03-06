@@ -204,6 +204,89 @@ export const teachersList = [
   }
 ];
 
+export const trainingsList = [
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: [],
+    students: [],
+    addTeachers: [],
+    addStudents: []
+  }
+];
+
 export const defaultStudent = {
   name: "",
   email: "",
@@ -211,7 +294,7 @@ export const defaultStudent = {
   grade: "",
   rate: 0,
   pass: "",
-  age: 0,
+  age: null,
   bio: ""
 };
 
@@ -219,9 +302,17 @@ export const defaultTeacher = {
   name: "",
   email: "",
   module: "",
-  phone: "",
+  phone: null,
   rank: "",
   date: "",
-  age: 0,
+  age: null,
   bio: ""
+};
+export const defaultTraining = {
+  name: "",
+  price: null,
+  teachers: [],
+  students: [],
+  addTeachers: [],
+  addStudents: []
 };

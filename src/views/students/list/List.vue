@@ -22,12 +22,18 @@
           :item="editedItem"
           @update:detailDialog="detailDialog = $event"
         />
+        <Delete
+          :dialog="deleteDialog"
+          @update:deleteDialog="deleteDialog = $event"
+          @delete="handleDelete"
+        />
       </v-toolbar>
     </template>
 
     <template v-slot:[`item.actions`]="{ item }">
-      <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-      <v-icon small @click="showItem(item)"> mdi-eye </v-icon>
+      <v-icon small class="mx-1" @click="editItem(item)"> mdi-pencil </v-icon>
+      <v-icon small class="mx-1" @click="showItem(item)"> mdi-eye </v-icon>
+      <v-icon small class="mx-1" @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -39,14 +45,15 @@
 import { studentsList, defaultStudent } from "@/utils/data_of_list";
 import { studentsHeader } from "@/utils/header_of_list.js";
 
-import { Add, Edit, Details } from "./dialogs";
+import { Add, Edit, Details, Delete } from "./dialogs";
 
 export default {
   name: "StudentsList",
   components: {
     Add,
     Edit,
-    Details
+    Details,
+    Delete
   },
   data() {
     return {
@@ -57,7 +64,10 @@ export default {
       students: [],
       editedIndex: -1,
       editedItem: defaultStudent,
-      defaultItem: defaultStudent
+      defaultItem: defaultStudent,
+      deleteDialog: false,
+      deleteIndex: -1,
+      deletedItem: null
     };
   },
 
@@ -78,6 +88,21 @@ export default {
       this.editedIndex = this.students.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.detailDialog = true;
+    },
+    deleteItem(item) {
+      this.deleteIndex = this.students.indexOf(item);
+      this.deletedItem = Object.assign({}, item);
+      this.deleteDialog = true;
+    },
+    handleDelete(confirm) {
+      if (!confirm) {
+        return;
+      }
+      if (this.deleteIndex !== -1) {
+        this.students.splice(this.deleteIndex, 1);
+      }
+      this.deletedItem = null;
+      this.deleteDialog = false;
     },
 
     resetEditedItem() {

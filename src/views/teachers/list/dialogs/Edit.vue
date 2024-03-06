@@ -18,6 +18,9 @@
               <v-text-field
                 v-model="localEditedItem[key]"
                 :label="key"
+                :error-messages="localGetErrorMessages(key)"
+                @input="$v.localEditedItem[key].$touch()"
+                @blur="$v.localEditedItem[key].$touch()"
               ></v-text-field>
             </v-col>
           </v-row>
@@ -34,10 +37,45 @@
 </template>
 
 <script>
+import { defaultTeacher } from "@/utils/data_of_list";
+import { getErrorMessages, phoneNumber } from "@/utils/functions";
+import { validationMixin } from "vuelidate";
+import {
+  required,
+  email,
+  minLength,
+  maxLength,
+  numeric,
+  decimal
+} from "vuelidate/lib/validators";
 export default {
   props: {
     dialog: Boolean,
     editedItem: Object
+  },
+  mixins: [validationMixin],
+  validations: {
+    localEditedItem: {
+      ...Object.fromEntries(
+        Object.keys(defaultTeacher).map((key) => {
+          const validators = { required };
+          if (key === "email") {
+            validators.email = email;
+          } else if (key === "name") {
+            validators.minLength = minLength(5);
+            validators.maxLength = maxLength(20);
+          } else if (key === "age") {
+            validators.numeric = numeric;
+          } else if (key === "phone") {
+            validators.phone = phoneNumber;
+          } else if (key === "rate") {
+            validators.numeric = decimal;
+          }
+
+          return [key, validators];
+        })
+      )
+    }
   },
   data() {
     return {
@@ -49,6 +87,7 @@ export default {
       if (newVal) {
         this.localEditedItem = this.editedItem;
       } else {
+        this.$v.$reset();
         this.closeDialog();
       }
     },
@@ -61,13 +100,51 @@ export default {
     }
   },
   methods: {
+    localGetErrorMessages(key) {
+      return getErrorMessages.call(this, key);
+    },
     closeDialog() {
       this.$emit("update:editDialog", false);
     },
     save() {
-      this.$emit("save", { ...this.localEditedItem });
-      this.closeDialog();
+      this.$v.$touch();
+      if (!this.$v.$invalid) {
+        this.$emit("save", { ...this.localEditedItem });
+        this.closeDialog();
+      }
     }
   }
 };
 </script>
+<!-- 
+<select-list
+      v-model="rowItem.teachers"
+      :items="rowItem.addTeachers"
+      label="Select Teacher"
+      icon="mdi-plus"
+      @buttonClicked="addButtonClicked(rowItem, $event, 'teachers')"
+    />
+
+    <select-list
+      v-model="rowItem.students"
+      :items="rowItem.addStudents"
+      label="Select Student"
+      icon="mdi-plus"
+      @buttonClicked="addButtonClicked(rowItem, $event, 'students')"
+    />
+
+    <select-list
+      v-model="rowItem.teachers"
+      :items="rowItem.teachers"
+      label="Teacher"
+      icon="mdi-minus"
+      @buttonClicked="removeButtonClicked(rowItem, $event, 'teachers')"
+    />
+
+    <select-list
+      v-model="rowItem.students"
+      :items="rowItem.students"
+      label="Student"
+      icon="mdi-minus"
+      @buttonClicked="removeButtonClicked(rowItem, $event, 'students')"
+    /> -->

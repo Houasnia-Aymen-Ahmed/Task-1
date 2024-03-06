@@ -55,6 +55,7 @@ export default {
       ["mdi-inbox-arrow-down", "Inbox", "/admin/inbox"],
       ["mdi-account-multiple", "Students", "/admin/students"],
       ["mdi-account-tie", "Teachers", "/admin/teachers"],
+      ["mdi-account-school", "Training", "/admin/trainings"],
       ["mdi-delete", "Trash", "/admin/trash"],
       ["mdi-alert-octagon", "Spam", "/admin/spam"]
     ]
