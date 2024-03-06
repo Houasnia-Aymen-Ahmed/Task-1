@@ -11,11 +11,72 @@
               v-for="(value, key) in localItem"
               :key="key"
               cols="12"
-              sm="6"
-              md="4"
+              md="6"
             >
-              {{ key }}<br />
-              {{ value }}
+              <v-list-item v-if="key === 'name' || key === 'price'">
+                <v-list-item-content>
+                  <v-list-item-title>{{ value }}</v-list-item-title>
+                  <v-list-item-subtitle>{{
+                    key.charAt(0).toUpperCase() + key.slice(1)
+                  }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+              <v-menu
+                v-else-if="key === 'teachers' || key === 'students'"
+                origin="center center"
+                transition="scale-transition"
+                open-on-hover
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    class="pa-4 text-left indigo lighten-4 text-no-wrap rounded-lg"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    {{ key === "students" ? "Students" : "Teachers" }}
+                  </div>
+                </template>
+                <v-list v-if="localItem[key].length > 0">
+                  <v-list-item v-for="(item, i) in localItem[key]" :key="i">
+                    <v-list-item-content>
+                      <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                <v-list v-else>
+                  <v-list-item>
+                    <v-list-item-content>No Data Available</v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+              <v-menu
+                v-else
+                origin="center center"
+                transition="scale-transition"
+                open-on-hover
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <div
+                    class="pa-4 text-left indigo lighten-4 text-no-wrap rounded-lg"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    {{ "Select " + key.replace("add", "") }}
+                  </div>
+                </template>
+                <v-list v-if="localItem[key].length > 0">
+                  <v-list-item v-for="(item, i) in localItem[key]" :key="i">
+                    <v-list-item-content>
+                      <v-list-item-title>{{ item }}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                <v-list v-else>
+                  <v-list-item>
+                    <v-list-item-content>No Data Available</v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
             </v-col>
           </v-row>
         </v-container>
@@ -56,7 +117,9 @@ export default {
     filterKeys(obj) {
       const filteredObj = {};
       for (const key in defaultTraining) {
-        filteredObj[key] = Object.prototype.hasOwnProperty.call(obj, key) ? obj[key] : defaultTraining[key];
+        filteredObj[key] = Object.prototype.hasOwnProperty.call(obj, key)
+          ? obj[key]
+          : defaultTraining[key];
       }
       return filteredObj;
     }

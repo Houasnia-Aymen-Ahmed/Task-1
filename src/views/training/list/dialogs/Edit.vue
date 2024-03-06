@@ -175,13 +175,7 @@ export default {
       return addButtonClicked.call(this, localItem, selectedItem, type);
     },
     removeButtonClicked(localItem, selectedItem, type) {
-      return removeButtonClicked.call(
-        this,
-        localItem,
-        selectedItem,
-
-        type
-      );
+      return removeButtonClicked.call(this, localItem, selectedItem, type);
     }
   }
 };

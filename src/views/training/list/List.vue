@@ -29,18 +29,22 @@
         />
       </v-toolbar>
     </template>
+
     <template v-slot:[`item.actions`]="{ item }">
       <v-icon small class="mx-1" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small class="mx-1" @click="showItem(item)"> mdi-eye </v-icon>
       <v-icon small class="mx-1" @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
+
     <template v-slot:[`item.addTeachers`]="{ item: rowItem }">
       <select-list
         v-model="rowItem.teachers"
         :items="rowItem.addTeachers"
         label="Select Teacher"
-        icon="mdi-plus"
-        @action="addButtonClicked(rowItem, $event, 'teachers')"
+        :localItem="rowItem"
+        :btnType="'add'"
+        type="teachers"
+        @action="save"
       />
     </template>
 
@@ -49,8 +53,10 @@
         v-model="rowItem.students"
         :items="rowItem.addStudents"
         label="Select Student"
-        icon="mdi-plus"
-        @action="addButtonClicked(rowItem, $event, 'students')"
+        :localItem="rowItem"
+        :btnType="'add'"
+        type="students"
+        @action="save"
       />
     </template>
 
@@ -59,8 +65,10 @@
         v-model="rowItem.teachers"
         :items="rowItem.teachers"
         label="Teacher"
-        icon="mdi-minus"
-        @action="removeButtonClicked(rowItem, $event, 'teachers')"
+        :localItem="rowItem"
+        :btnType="'remove'"
+        type="teachers"
+        @action="save"
       />
     </template>
 
@@ -69,8 +77,10 @@
         v-model="rowItem.students"
         :items="rowItem.students"
         label="Student"
-        icon="mdi-minus"
-        @action="removeButtonClicked(rowItem, $event, 'students')"
+        :localItem="rowItem"
+        type="students"
+        :btnType="'remove'"
+        @action="save"
       />
     </template>
     <template v-slot:no-data>
@@ -88,7 +98,6 @@ import {
 } from "@/utils/data_of_list.js";
 import { trainingsHeader } from "@/utils/header_of_list.js";
 import { Add, Edit, Details, Delete } from "./dialogs";
-import { addButtonClicked, removeButtonClicked } from "@/utils/functions";
 import SelectList from "@/components/SelectList.vue";
 
 export default {
@@ -122,11 +131,7 @@ export default {
   },
   methods: {
     initialize() {
-      this.trainings = trainingsList.map((training) => ({
-        ...training,
-        addTeachers: [...teachersList.map((teacher) => teacher.name)],
-        addStudents: [...studentsList.map((student) => student.name)]
-      }));
+      this.trainings = trainingsList;
     },
 
     editItem(item) {
@@ -154,19 +159,10 @@ export default {
       this.deletedItem = null;
       this.deleteDialog = false;
     },
-
-    addButtonClicked(localItem, selectedItem, type) {
-      return addButtonClicked.call(this, localItem, selectedItem, type);
-    },
-    removeButtonClicked(localItem, selectedItem, type) {
-      return removeButtonClicked.call(this, localItem, selectedItem, type);
-    },
-
     resetEditedItem() {
       this.editedItem = { ...this.defaultItem };
       this.editedIndex = -1;
     },
-
     save(newItem) {
       if (this.editedIndex > -1) {
         Object.assign(this.trainings[this.editedIndex], newItem);

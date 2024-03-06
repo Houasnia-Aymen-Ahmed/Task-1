@@ -210,80 +210,80 @@ export const trainingsList = [
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
     students: [],
-    addTeachers: [],
-    addStudents: []
+    addTeachers: [...teachersList.map((teacher) => teacher.name)],
+    addStudents: [...studentsList.map((student) => student.name)]
   }
 ];
 

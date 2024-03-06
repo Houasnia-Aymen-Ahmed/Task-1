@@ -13,9 +13,11 @@
             dark
             small
             color="primary"
-            @click="actionClicked(selectedItem)"
+            @click="buttonClicked(selectedItem)"
           >
-            <v-icon dark>{{ icon }}</v-icon>
+            <v-icon dark>{{
+              btnType === "add" ? "mdi-plus" : "mdi-minus"
+            }}</v-icon>
           </v-btn>
         </v-list-item-action>
       </v-list-item>
@@ -24,16 +26,26 @@
 </template>
 
 <script>
+import { addButtonClicked, removeButtonClicked } from "@/utils/functions";
 export default {
   props: {
     model: String,
     items: Array,
     label: String,
-    icon: String
+    btnType: String,
+    localItem: Object,
+    type: String
   },
   methods: {
-    actionClicked(selectedItem) {
-      this.$emit("action", selectedItem);
+    buttonClicked(selectedItem) {
+      return this.btnType === "add"
+        ? addButtonClicked.call(this, this.localItem, selectedItem, this.type)
+        : removeButtonClicked.call(
+            this,
+            this.localItem,
+            selectedItem,
+            this.type
+          );
     }
   }
 };
