@@ -29,6 +29,9 @@
         />
       </v-toolbar>
     </template>
+    <template v-slot:[`item.students`]="{ item }">
+      <span>{{ item.students.length }} Students</span>
+    </template>
 
     <template v-slot:[`item.actions`]="{ item }">
       <v-icon small class="mx-1" @click="editItem(item)"> mdi-pencil </v-icon>
@@ -36,53 +39,6 @@
       <v-icon small class="mx-1" @click="deleteItem(item)"> mdi-delete </v-icon>
     </template>
 
-    <template v-slot:[`item.addTeachers`]="{ item: rowItem }">
-      <select-list
-        v-model="rowItem.teachers"
-        :items="rowItem.addTeachers"
-        label="Select Teacher"
-        :localItem="rowItem"
-        :btnType="'add'"
-        type="teachers"
-        @action="save"
-      />
-    </template>
-
-    <template v-slot:[`item.addStudents`]="{ item: rowItem }">
-      <select-list
-        v-model="rowItem.students"
-        :items="rowItem.addStudents"
-        label="Select Student"
-        :localItem="rowItem"
-        :btnType="'add'"
-        type="students"
-        @action="save"
-      />
-    </template>
-
-    <template v-slot:[`item.teachers`]="{ item: rowItem }">
-      <select-list
-        v-model="rowItem.teachers"
-        :items="rowItem.teachers"
-        label="Teacher"
-        :localItem="rowItem"
-        :btnType="'remove'"
-        type="teachers"
-        @action="save"
-      />
-    </template>
-
-    <template v-slot:[`item.students`]="{ item: rowItem }">
-      <select-list
-        v-model="rowItem.students"
-        :items="rowItem.students"
-        label="Student"
-        :localItem="rowItem"
-        type="students"
-        :btnType="'remove'"
-        @action="save"
-      />
-    </template>
     <template v-slot:no-data>
       <v-btn color="primary" @click="initialize"> Reset </v-btn>
     </template>
@@ -98,7 +54,6 @@ import {
 } from "@/utils/data_of_list.js";
 import { trainingsHeader } from "@/utils/header_of_list.js";
 import { Add, Edit, Details, Delete } from "./dialogs";
-import SelectList from "@/components/SelectList.vue";
 
 export default {
   name: "trainingsList",
@@ -106,8 +61,7 @@ export default {
     Add,
     Edit,
     Details,
-    Delete,
-    SelectList
+    Delete
   },
   data() {
     return {
@@ -164,6 +118,7 @@ export default {
       this.editedIndex = -1;
     },
     save(newItem) {
+      console.log(newItem);
       if (this.editedIndex > -1) {
         Object.assign(this.trainings[this.editedIndex], newItem);
       } else {

@@ -23,67 +23,39 @@
                 @blur="$v.localEditedItem[key].$touch()"
               ></v-text-field>
               <v-select
-                v-else-if="key === 'teachers' || key === 'students'"
+                v-else-if="key === 'teachers'"
                 v-model="localEditedItem[key]"
-                :items="localEditedItem[key]"
-                :label="key === 'students' ? 'Students' : 'Teachers'"
+                :items="teachersList"
+                :error-messages="localGetErrorMessages(key)"
+                item-text="name"
+                label="Select a Teacher"
+                solo
+                return-object
               >
-                <template v-slot:item="{ item: selectedItem }">
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        {{ selectedItem }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                    <v-list-item-action class="d-flex flex-row">
-                      <v-btn
-                        class="mx-1"
-                        dark
-                        small
-                        color="primary"
-                        @click="
-                          removeButtonClicked(
-                            localEditedItem,
-                            selectedItem,
-                            key.toString().toLowerCase()
-                          )
-                        "
-                        ><v-icon dark> mdi-minus </v-icon></v-btn
-                      >
-                    </v-list-item-action>
-                  </v-list-item>
+                <template v-slot:item="{ item }">
+                  <div>
+                    <div>{{ item.name }}</div>
+                    <div class="subtext">{{ item.email }}</div>
+                  </div>
                 </template>
               </v-select>
               <v-select
-                v-else
+                v-else-if="key === 'students'"
                 v-model="localEditedItem[key]"
-                :items="localEditedItem[key]"
-                :label="'Select ' + key.replace('add', '')"
+                :items="studentsList"
+                :error-messages="localGetErrorMessages(key)"
+                item-text="name"
+                label="Select a Students"
+                solo
+                multiple
+                chips
+                return-object
               >
-                <template v-slot:item="{ item: selectedItem }">
-                  <v-list-item>
-                    <v-list-item-content>
-                      <v-list-item-title>
-                        {{ selectedItem }}
-                      </v-list-item-title>
-                    </v-list-item-content>
-                    <v-list-item-action class="d-flex flex-row">
-                      <v-btn
-                        class="mx-1"
-                        dark
-                        small
-                        color="primary"
-                        @click="
-                          addButtonClicked(
-                            localEditedItem,
-                            selectedItem,
-                            key.replace('add', '').toString().toLowerCase()
-                          )
-                        "
-                        ><v-icon dark> mdi-plus </v-icon></v-btn
-                      >
-                    </v-list-item-action>
-                  </v-list-item>
+                <template v-slot:item="{ item }">
+                  <div>
+                    <div>{{ item.name }}</div>
+                    <div class="subtext">{{ item.email }}</div>
+                  </div>
                 </template>
               </v-select>
             </v-col>
@@ -101,16 +73,19 @@
 </template>
 
 <script>
-import { defaultTraining } from "@/utils/data_of_list";
 import { getErrorMessages } from "@/utils/functions";
 import { validationMixin } from "vuelidate";
-import { addButtonClicked, removeButtonClicked } from "@/utils/functions";
 import {
   required,
   minLength,
   maxLength,
   decimal
 } from "vuelidate/lib/validators";
+import {
+  defaultTraining,
+  teachersList,
+  studentsList
+} from "@/utils/data_of_list";
 
 export default {
   props: {
@@ -128,8 +103,6 @@ export default {
             validators.maxLength = maxLength(20);
           } else if (key === "price") {
             validators.numeric = decimal;
-          } else if (key === "teachers" || key === "students") {
-            validators.required = {};
           }
           return [key, validators];
         })
@@ -138,7 +111,9 @@ export default {
   },
   data() {
     return {
-      localEditedItem: {}
+      localEditedItem: {},
+      teachersList,
+      studentsList
     };
   },
   watch: {
@@ -171,12 +146,6 @@ export default {
         this.closeDialog();
       }
     },
-    addButtonClicked(localItem, selectedItem, type) {
-      return addButtonClicked.call(this, localItem, selectedItem, type);
-    },
-    removeButtonClicked(localItem, selectedItem, type) {
-      return removeButtonClicked.call(this, localItem, selectedItem, type);
-    }
   }
 };
 </script>

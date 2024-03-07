@@ -208,82 +208,62 @@ export const trainingsList = [
   {
     name: "Mobile Development",
     price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
+  },
+  {
+    name: "Mobile Development",
+    price: 56.56,
+    teachers: null,
+    students: []
   },
   {
     name: "Mobile Development",
     price: 56.56,
     teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
+    students: []
   },
   {
     name: "Mobile Development",
     price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
-  },
-  {
-    name: "Mobile Development",
-    price: 56.56,
-    teachers: [],
-    students: [],
-    addTeachers: [...teachersList.map((teacher) => teacher.name)],
-    addStudents: [...studentsList.map((student) => student.name)]
+    teachers: null,
+    students: []
   }
 ];
 
@@ -311,8 +291,6 @@ export const defaultTeacher = {
 export const defaultTraining = {
   name: "",
   price: null,
-  teachers: [],
-  students: [],
-  addTeachers: [],
-  addStudents: []
+  teachers: null,
+  students: []
 };

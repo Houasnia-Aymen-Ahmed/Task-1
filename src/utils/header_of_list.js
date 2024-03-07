@@ -44,13 +44,10 @@ export const trainingsHeader = [
     align: "center"
   },
   {
-    text: "Students",
+    text: "Number of Students",
     sortable: false,
     value: "students",
-    width: "15%",
     align: "center"
   },
-  { text: "Add Teachers", sortable: false, value: "addTeachers", width: "15%" },
-  { text: "Add Students", sortable: false, value: "addStudents", width: "15%" },
   { text: "Actions", value: "actions", sortable: false }
 ];

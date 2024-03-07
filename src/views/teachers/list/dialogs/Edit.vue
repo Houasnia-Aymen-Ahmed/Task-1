@@ -116,35 +116,3 @@ export default {
   }
 };
 </script>
-<!-- 
-<select-list
-      v-model="rowItem.teachers"
-      :items="rowItem.addTeachers"
-      label="Select Teacher"
-      icon="mdi-plus"
-      @buttonClicked="addButtonClicked(rowItem, $event, 'teachers')"
-    />
-
-    <select-list
-      v-model="rowItem.students"
-      :items="rowItem.addStudents"
-      label="Select Student"
-      icon="mdi-plus"
-      @buttonClicked="addButtonClicked(rowItem, $event, 'students')"
-    />
-
-    <select-list
-      v-model="rowItem.teachers"
-      :items="rowItem.teachers"
-      label="Teacher"
-      icon="mdi-minus"
-      @buttonClicked="removeButtonClicked(rowItem, $event, 'teachers')"
-    />
-
-    <select-list
-      v-model="rowItem.students"
-      :items="rowItem.students"
-      label="Student"
-      icon="mdi-minus"
-      @buttonClicked="removeButtonClicked(rowItem, $event, 'students')"
-    /> -->
